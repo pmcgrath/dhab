@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# See https://docs.docker.com/docker-cloud/builds/advanced/#custom-build-phase-hooks
+# For tagging see http://windsock.io/automated-docker-image-builds-with-multiple-tags/
+set -e
+
+# Get version from file
+VERSION=$(cat VERSION)
+
+# Get iversioned image name
+TAG_START=$(expr index "$IMAGE_NAME" :)
+REPO_NAME=${IMAGE_NAME:0:TAG_START-1}
+VERSIONED_IMAGE_NAME=${REPO_NAME}:${VERSION}
+
+docker tag $IMAGE_NAME $VERSIONED_IMAGE_NAME
+docker push $VERSIONED_IMAGE_NAME

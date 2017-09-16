@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# See https://docs.docker.com/docker-cloud/builds/advanced/#custom-build-phase-hooks
+# I have found the SOURCE_COMMIT env var is not set like the doc indicates, there is a GIT_SHA1 variable which we can use instead ?
+# To see what env vars we have include printenv below
+set -e
+
+# Build date
+BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+# Get version from file
+VERSION=$(cat VERSION)
+
+# IMAGE_NAME env var comes from the automated build
+docker image build \
+	--build-arg BUILD_DATE=${BUILD_DATE} \
+	--build-arg REPO_BRANCH=${SOURCE_BRANCH} \
+	--build-arg REPO_VERSION=${GIT_SHA1} \
+	--build-arg VERSION=${VERSION} \
+	--tag ${IMAGE_NAME} .

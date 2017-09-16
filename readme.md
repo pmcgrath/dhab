@@ -41,8 +41,8 @@ Note: Do not create the dockerhub repository first, the create automated build c
 
 # Docker image info
 - Rather than pulling the image there are tools that can give you some of this info, see [MicroBadger](https://microbadger.com/images/pmcgrath/dhab)
-
 - To view and run locally
+
 ```
 # Lets pull the image
 docker image pull pmcgrath/dhab:0.1
@@ -50,6 +50,6 @@ docker image pull pmcgrath/dhab:0.1
 # Lets examine the labels
 docker image inspect pmcgrath/dhab:0.1 | jq .[0].Config.Labels
 
-# Run an instance - Do you trust this content - should view the dockerfile or examine content, could be doing anything !
-docker container run pmcgrath/dhab:0.1
+# Run an instance - Do you trust this content ? Should view the dockerfile or examine content, could be doing anything !
+docker container run --read-only pmcgrath/dhab:0.1
 ```

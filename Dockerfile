@@ -11,7 +11,7 @@ ARG        VERSION
 COPY       * /app/
 WORKDIR    /app
 
-# Lets set the version var at the top of the script so the script is complete
+# Lets set the version var at the top of the script so the script is self contained
 RUN        sed -i "s/version=.*/version=${VERSION}/g" app.sh
 
 # Final image
@@ -23,6 +23,9 @@ ARG        REPO_VERSION
 ARG        VERSION
 
 COPY       --from=builder /app/app.sh /
+
+RUN        adduser -D -H non-root-user
+USER       non-root-user
 
 # See http://label-schema.org/rc1/
 LABEL      org.label-schema.build-date=$BUILD_DATE \

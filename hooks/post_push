@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # See https://docs.docker.com/docker-cloud/builds/advanced/#custom-build-phase-hooks
 # For tagging see http://windsock.io/automated-docker-image-builds-with-multiple-tags/
+# Could and probably would rely on git repo tags or branches which are supported by the automated builds, so would not need this hook file
 set -e
 
 # Get version from file

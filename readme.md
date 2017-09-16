@@ -1,5 +1,5 @@
 # Purpose
-Some notes on dockerhub automated builds
+Some notes and basic content on dockerhub automated builds for a forgetful mind
 
 
 

@@ -16,8 +16,14 @@ REPO_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 REPO_VERSION = $(shell git rev-parse HEAD)
 
 
-default: docker-build
+default: image
 
 
-docker-build:
-	docker image build --build-arg BUILD_DATE=${BUILD_DATE} --build-arg REPO_BRANCH=${REPO_BRANCH} --build-arg REPO_VERSION=${REPO_VERSION} --build-arg VERSION=${VERSION} --tag ${FULL_IMAGE_NAME_AND_TAG} .
+image:
+	docker image build \
+		--build-arg BUILD_DATE=${BUILD_DATE} \
+		--build-arg REPO_BRANCH=${REPO_BRANCH} \
+		--build-arg REPO_VERSION=${REPO_VERSION} \
+		--build-arg VERSION=${VERSION} \
+		--tag ${FULL_IMAGE_NAME_AND_TAG} \
+		.

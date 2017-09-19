@@ -24,8 +24,7 @@ ARG        VERSION
 
 COPY       --from=builder /app/app.sh /
 
-RUN        adduser -D -H non-root-user
-USER       non-root-user
+USER       nobody:nobody
 
 # See http://label-schema.org/rc1/
 LABEL      org.label-schema.build-date=$BUILD_DATE \
